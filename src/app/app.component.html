@@ -1,0 +1,29 @@
+<section class="todoapp">
+  <header class="header">
+    <input class="new-todo" placeholder="What's on your mind?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
+  </header>
+  <section class="main" *ngIf="todos.length > 0">
+
+    <ul class="todo-list">
+      <!--<li *ngFor="let todo of todos" [class.completed]="todo.complete">-->
+      <li *ngFor="let todo of todos">
+        <div class="view">
+          <input class="toggle" type="checkbox" (click)="toggleSelect(todo)" [checked]="todo.complete">
+          <label>{{todo.title}}</label>
+          <button class="destroy" (click)="removeTodo(todo)"></button>
+        </div>
+      </li>
+    </ul>
+
+  </section>
+
+  <footer class="footer" *ngIf="selectedCount>0 || todos.length" >
+    <button type="button" *ngIf="selectedCount>0" class="btn btn-secondary" (click)="clearSelected()">Clear Selected</button>
+    <!--<button type="button" *ngIf="todos.length" class="btn btn-danger"-->
+            <!--(click)="clearAll()">Clear All</button>-->
+
+    <button type="button" *ngIf="todos.length" class="btn btn-info"
+            (click)="toggleMarkAll()">{{markAllText}}</button>
+
+  </footer>
+</section>
